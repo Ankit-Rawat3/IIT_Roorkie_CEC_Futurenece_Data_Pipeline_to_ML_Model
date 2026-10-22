@@ -50,9 +50,7 @@ Sameer signs off only when all ten acceptance criteria below are met and demonst
 4. Revenue by payment mode, and the total amount that doesn't reconcile with the payment gateway.
 5. Top 10 customers by spend, with loyalty tier (no raw email or phone shown).
 6. Number of rows rejected today, by file and by reason.
-
 ## 3. Data provided
-
 You get six CSV exports from NammaMart's systems in [`assignment/nammamart_dataset/`](nammamart_dataset/): 5,372 rows in total, covering 1–30 September 2026, plus a next-day file. Copy them into `include/data/nammamart/` and never edit them by hand.
 
 | File | Rows | Columns | Source system | Type |
@@ -65,14 +63,12 @@ You get six CSV exports from NammaMart's systems in [`assignment/nammamart_datas
 | `orders_2026-10-01_increment.csv` | 160 | Same 13 columns as orders.csv | Next-day order export | Incremental feed |
 
 **Relationships**
-
 - `orders.customer_id` → `customers.customer_id`
 - `orders.product_id` → `products.product_id`
 - `orders.store_id` → `stores.store_id`
 - `payments.order_id` → `orders.order_id` (cancelled orders have no payment)
 
 **Business rules from the client**
-
 - `order_amount = quantity × unit_price × (1 − discount_pct / 100)`, rounded to 2 decimals.
 - Valid `order_status`: DELIVERED, CANCELLED, RETURNED. Only DELIVERED counts as revenue.
 - Valid `payment_mode`: UPI, Card, Cash on Delivery, Wallet.
